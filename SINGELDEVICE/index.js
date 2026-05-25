@@ -1,15 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-    if (window.TelegramAnalytics) {
-        window.TelegramAnalytics.init({
-            token: 'eyJhcHBfbmFtZSI6InN0a19nYW1lcyIsImFwcF91cmwiOiJodHRwczovL3QubWUvZ2FtZXNfc3RrX2JvdCIsImFwcF9kb21haW4iOiJodHRwczovL3N0ay1nYW1lcy5uZXRsaWZ5LmFwcC8ifQ==!XNslm9OzZRn8dyUfHiKszMdE909M4xutouzRb9aTvnc=',
-            appName: 'stk_games',
-        });
-        window.TelegramAnalytics.trackEvent('page_view', { path: window.location.pathname });
-    }
-
     const slider = document.getElementById('viewSlider');
     const toggle = document.getElementById('mode-toggle-checkbox');
-    const pageTitle = document.getElementById('page-title');
 
     function updateView(isMulti) {
         if (!slider || !toggle) return;
@@ -26,8 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
         updateView(toggle.checked);
         toggle.addEventListener('change', () => {
             updateView(toggle.checked);
-            if (window.TelegramAnalytics) {
-                window.TelegramAnalytics.trackEvent('view_mode_changed', { mode: toggle.checked ? 'multi' : 'single' });
+            if (window.telegramAnalytics) {
+                window.telegramAnalytics.trackEvent('view_mode_changed', { mode: toggle.checked ? 'multi' : 'single' });
             }
         });
     }
@@ -46,8 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelectorAll(".game-card").forEach(card => {
         card.addEventListener("click", () => {
-            if (window.TelegramAnalytics) {
-                window.TelegramAnalytics.trackEvent('game_clicked', {
+            if (window.telegramAnalytics) {
+                window.telegramAnalytics.trackEvent('game_clicked', {
                     game_name: card.dataset.game
                 });
             }

@@ -1,7 +1,15 @@
+import TelegramAnalytics from '@telegram-apps/analytics';
+
+TelegramAnalytics.init({
+  token: 'eyJhcHBfbmFtZSI6InN0a19nYW1lcyIsImFwcF91cmwiOiJodHRwczovL3QubWUvZ2FtZXNfc3RrX2JvdCIsImFwcF9kb21haW4iOiJodHRwczovL3N0ay1nYW1lcy5uZXRsaWZ5LmFwcC8ifQ==!XNslm9OzZRn8dyUfHiKszMdE909M4xutouzRb9aTvnc=',
+  appName: 'stk_games',
+});
+
+TelegramAnalytics.trackEvent('page_view', { path: window.location.pathname });
+
 const slider = document.getElementById('viewSlider');
 const toggle = document.getElementById('mode-toggle-checkbox');
 const pageTitle = document.getElementById('page-title');
-
 
 function updateView(isMulti) {
     if (isMulti) {
@@ -13,9 +21,12 @@ function updateView(isMulti) {
     }
 }
 
-toggle.addEventListener('change', () => {
-    updateView(toggle.checked);
-});
+if (toggle) {
+    toggle.addEventListener('change', () => {
+        updateView(toggle.checked);
+        TelegramAnalytics.trackEvent('view_mode_changed', { mode: toggle.checked ? 'multi' : 'single' });
+    });
+}
 
 let touchStartX = 0;
 document.addEventListener('touchstart', e => {
@@ -29,8 +40,13 @@ document.addEventListener('touchend', e => {
     if (touchEndX - touchStartX > threshold) updateView(false);
 }, { passive: true });
 
+
 document.querySelectorAll(".game-card").forEach(card => {
     card.addEventListener("click", () => {
+        TelegramAnalytics.trackEvent('game_clicked', {
+            game_name: card.dataset.game
+        });
+
         localStorage.setItem("lastGame", JSON.stringify({
             name: card.dataset.game,
             href: card.getAttribute("href")

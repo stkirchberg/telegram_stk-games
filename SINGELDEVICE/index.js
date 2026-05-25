@@ -1,5 +1,3 @@
-import TelegramAnalytics from '@telegram-apps/analytics';
-
 TelegramAnalytics.init({
   token: 'eyJhcHBfbmFtZSI6InN0a19nYW1lcyIsImFwcF91cmwiOiJodHRwczovL3QubWUvZ2FtZXNfc3RrX2JvdCIsImFwcF9kb21haW4iOiJodHRwczovL3N0ay1nYW1lcy5uZXRsaWZ5LmFwcC8ifQ==!XNslm9OzZRn8dyUfHiKszMdE909M4xutouzRb9aTvnc=',
   appName: 'stk_games',

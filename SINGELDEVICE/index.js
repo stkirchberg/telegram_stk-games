@@ -22,6 +22,7 @@ function updateView(isMulti) {
 }
 
 if (toggle) {
+    updateView(toggle.checked);
     toggle.addEventListener('change', () => {
         updateView(toggle.checked);
         TelegramAnalytics.trackEvent('view_mode_changed', { mode: toggle.checked ? 'multi' : 'single' });
@@ -40,13 +41,11 @@ document.addEventListener('touchend', e => {
     if (touchEndX - touchStartX > threshold) updateView(false);
 }, { passive: true });
 
-
 document.querySelectorAll(".game-card").forEach(card => {
     card.addEventListener("click", () => {
         TelegramAnalytics.trackEvent('game_clicked', {
             game_name: card.dataset.game
         });
-
         localStorage.setItem("lastGame", JSON.stringify({
             name: card.dataset.game,
             href: card.getAttribute("href")

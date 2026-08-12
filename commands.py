@@ -8,7 +8,7 @@ def register_commands(bot):
             "/games - Explanation of a specific game\n"
             "/help - Support & Info\n"
             "/open_source - GitHub link\n"
-            "/donate - Support us"
+            "/donate - Buy me a tea"
         )
         bot.send_message(message.chat.id, text, parse_mode="HTML")
 
@@ -22,7 +22,7 @@ def register_commands(bot):
 
     @bot.message_handler(commands=['support'])
     def support_command(message):
-        bot.send_message(message.chat.id, "Write a message at t.me/stk_22_05")
+        bot.send_message(message.chat.id, "Write a message at t.me/stk25519")
 
     @bot.message_handler(commands=['games'])
     def list_games(message):
@@ -144,4 +144,4 @@ def register_commands(bot):
 
     @bot.message_handler(commands=['donate'])
     def donate(message):
-        bot.send_message(message.chat.id, "Support us via Telegram Wallet: https://t.me/wallet?start=stk_22_05")
+        bot.send_message(message.chat.id, "For whatever reason you might want to donate, it’s your money. If you’d like to make it mine: https://t.me/wallet?start=stk25519")
